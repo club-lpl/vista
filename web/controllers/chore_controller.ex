@@ -1,8 +1,12 @@
+require IEx
+
 defmodule Vista.ChoreController do
   use Vista.Web, :controller
 
   def index(conn, _params) do
-    render conn, "index.json"
+    chores = Vista.Repo.all(Vista.Chore)
+    IEx.pry()
+    render(conn, "index.json", chores: chores)
   end
 
   def create(conn, params) do
@@ -13,6 +17,6 @@ defmodule Vista.ChoreController do
   end
 
   defp handleInsert({ :ok, chore }, conn) do
-    render conn, "chore.json", chore
+    render(conn, "chore.json", chore: chore)
   end
 end
