@@ -10,4 +10,10 @@ defmodule Vista.ChoreView do
   def render("chore.json", %{ chore: chore }) do
     Map.take(chore, [:id, :description, :start_date, :schedule, :inserted_at, :updated_at])
   end
+
+  def render("not_found.json", _) do
+    %{
+      error: "Requested Resource Not Found Bro"
+    }
+  end
 end
